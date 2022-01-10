@@ -2,6 +2,9 @@
 import pickle
 import streamlit as st
 import zipfile
+import sklearn
+from sklearn.ensemble import RandomForestClassifier 
+
 
 # path_to_zip_file = 'classifier_pipes.zip'
 # directory_to_extract_to = ''
