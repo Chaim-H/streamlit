@@ -2,9 +2,8 @@
 import pickle
 import streamlit as st
 import zipfile
-py -m pip sklearn
 import sklearn
-from sklearn.ensemble import RandomForestClassifier 
+# from sklearn.ensemble import RandomForestClassifier 
 
 
 # path_to_zip_file = 'classifier_pipes.zip'
