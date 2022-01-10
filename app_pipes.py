@@ -2,7 +2,7 @@
 import pickle
 import streamlit as st
 import zipfile
-py -m pip install sklearn
+py -m pip sklearn
 import sklearn
 from sklearn.ensemble import RandomForestClassifier 
 
