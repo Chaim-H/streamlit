@@ -1,7 +1,13 @@
  
 import pickle
 import streamlit as st
- 
+import zipfile
+
+path_to_zip_file = 'classifier_pipes.zip'
+directory_to_extract_to = ''
+with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
+    zip_ref.extractall(directory_to_extract_to)
+  
 # loading the trained model
 pickle_in = open('classifier_pipes.pkl', 'rb') 
 classifier = pickle.load(pickle_in)
