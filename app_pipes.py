@@ -25,7 +25,7 @@ def sigmoid_moved_to_2(x):
 
 def power(x):
     if x<1:
-        POWER = 1
+        POWER = 1.5
         return x**POWER / (x**POWER+0.5)
     if x>1:
         POWER = 2
@@ -93,7 +93,7 @@ def main():
     katz_cent = st.slider("What is katz_cent? (defalut is median)", min_value=0.05, max_value=0.17, value=(0.08))
     harmonic_centrality = st.slider("What is harmonic_centrality? (defalut is median)", min_value=5.51, max_value=28.80, value=(13.74))
     degree = st.slider("What is degree? (defalut is median)", min_value=1, max_value=5, value=(2), step=1)
-    threshold = st.number_input("Set threshold for predictin",min_value=0.0, max_value=100.0, value=(2.0)) 
+    threshold = st.number_input("Set threshold for prediction",min_value=0.0, max_value=100.0, value=(2.0)) 
 
     
     result =""
