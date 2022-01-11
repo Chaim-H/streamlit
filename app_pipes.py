@@ -52,13 +52,13 @@ def prediction(
     new_threshold = sigmoid_moved_to_2(threshold)
 
     if predict >= new_threshold:
-        pred = f'does\'nt accumulate'
+        pred = f'does\'nt accumulate {predict}'
     else:
-        pred = f'accumulate'
+        pred = f'accumulate {predict}'
 
-    print(prediction, threshold, new_threshold, pred)
+#     print(prediction, threshold, new_threshold, pred)
 
-    return predict
+    return pred
       
   
 # this is the main function in which we define our webpage  
