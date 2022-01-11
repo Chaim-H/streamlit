@@ -107,7 +107,7 @@ def main():
                         betweeness, closeness, current_flow_closeness, second_order, katz_cent, harmonic_centrality, degree,
                         threshold
                         )
-        st.success(f'Your pipe {result[0]})')
+        st.success(f'Your pipe {result[0]}')
 #         print(LoanAmount)
      
 if __name__=='__main__': 
