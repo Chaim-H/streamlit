@@ -1,9 +1,11 @@
- 
+%%writefile app_pipes.py
+
 import pickle
 import streamlit as st
 import zipfile
 import sklearn
-# from sklearn.ensemble import RandomForestClassifier 
+from scipy.special import logit, expit
+import numpy as np
 
 
 path_to_zip_file = 'classifier_pipes.zip'
@@ -11,17 +13,30 @@ directory_to_extract_to = ''
 with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
     zip_ref.extractall(directory_to_extract_to)
   
-# loading the trained model
+
 pickle_in = open('classifier_pipes.pkl', 'rb') 
 classifier = pickle.load(pickle_in)
  
 @st.cache()
   
 # defining the function which will make the prediction using the data which the user inputs 
+
+def sigmoid_moved_to_2(x):
+    y = np.exp(x-2)/(np.exp(x-2) + 1)
+    return y
+
+def power(x):
+    POWER = 2
+    return x**POWER / (x**POWER+2)
+
+def logit_2(x):
+    return logit(x)+2
+
 def prediction(
     linkdiameter, linkslope, Q_flow, Q_type_uniform,
     streamorderSH ,Link_residents ,Aspect_ratio ,real_density,
-    betweeness, closeness, current_flow_closeness, second_order, katz_cent, harmonic_centrality, degree
+    betweeness, closeness, current_flow_closeness, second_order, katz_cent, harmonic_centrality, degree,
+    threshold,
             ):   
  
     pickle_in = open('classifier_pipes.pkl', 'rb') 
@@ -30,13 +45,19 @@ def prediction(
     prediction = classifier.predict_proba( 
         [[linkdiameter, linkslope, Q_flow, Q_type_uniform,
     streamorderSH ,Link_residents ,Aspect_ratio ,real_density,
-    betweeness, closeness, current_flow_closeness, second_order, katz_cent, harmonic_centrality, degree]])[0][0]
-     
-    if prediction >= 0.5:
-        pred = f'does\'nt accumulate (probably: {100*(prediction):.0f}%)'
+    betweeness, closeness, current_flow_closeness, second_order, katz_cent, harmonic_centrality, degree]])[0][1]
+#     for threshold in [0,0.5,1,1.5,2,2.5,3,3.5,4,10,100]:
+    new_threshold = sigmoid_moved_to_2(threshold)
+
+    if prediction >= new_threshold:
+        pred = f'does\'nt accumulate (probably: {100*(power(abs(threshold-logit_2(prediction)))):.0f}%)'
+
     else:
-        pred = f'accumulate (probably: {100*(1-prediction):.0f}%)'
+        pred = f'accumulate (probably: {100*(power(abs(threshold-logit_2(prediction)))):.0f}%)'
+#     print(prediction, threshold, new_threshold, pred)
+
     return pred
+
       
   
 # this is the main function in which we define our webpage  
@@ -72,7 +93,8 @@ def main():
     katz_cent = st.slider("What is katz_cent? (defalut is median)", min_value=0.05, max_value=0.17, value=(0.08))
     harmonic_centrality = st.slider("What is harmonic_centrality? (defalut is median)", min_value=5.51, max_value=28.80, value=(13.74))
     degree = st.slider("What is degree? (defalut is median)", min_value=1, max_value=5, value=(2), step=1)
-    
+    threshold = st.number_input("Set threshold for predictin",min_value=0.0, max_value=100.0, value=(2.0)) 
+
     
     result =""
       
@@ -82,7 +104,8 @@ def main():
         result = prediction(
                         linkdiameter, linkslope, Q_flow, Q_type_uniform,
                         streamorderSH ,Link_residents ,Aspect_ratio ,real_density,
-                        betweeness, closeness, current_flow_closeness, second_order, katz_cent, harmonic_centrality, degree
+                        betweeness, closeness, current_flow_closeness, second_order, katz_cent, harmonic_centrality, degree,
+                        threshold
                         )
         st.success('Your pipe {}'.format(result))
 #         print(LoanAmount)
