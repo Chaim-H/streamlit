@@ -107,9 +107,6 @@ def main():
                         betweeness, closeness, current_flow_closeness, second_order, katz_cent, harmonic_centrality, degree,
                         threshold
                         )
-        100*(power(abs(threshold-logit_2(prediction))))
-                pred = f'does\'nt accumulate ({logit_2(prediction)}, probably: {100*(power(abs(threshold-logit_2(prediction)))):.0f}%)'
-
         st.success(f'Your pipe {result[0]}.\n (probably: {result[2]:.0f}%')
 #         print(LoanAmount)
      
