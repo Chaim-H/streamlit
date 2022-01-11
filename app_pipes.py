@@ -55,7 +55,7 @@ def prediction(
         pred = f'does\'nt accumulate ({logit_2(prediction)}, probably: {100*(power(abs(threshold-logit_2(prediction)))):.0f}%)'
 
     else:
-        pred = f'accumulate ({logit_2(prediction)}, probably: {100*(power(abs(threshold-logit_2(prediction)))):.0f}%)'
+        pred = f'accumulate \n(predicted shear stress: {logit_2(prediction):.2f}, \nprobably for accumulate: {100*(power(abs(threshold-logit_2(prediction)))):.0f}%)'
 #     print(prediction, threshold, new_threshold, pred)
 
     return pred
@@ -109,7 +109,7 @@ def main():
                         betweeness, closeness, current_flow_closeness, second_order, katz_cent, harmonic_centrality, degree,
                         threshold
                         )
-        st.success('Your pipe {}'.format(result))
+        st.success(f'Your pipe {result}')
 #         print(LoanAmount)
      
 if __name__=='__main__': 
