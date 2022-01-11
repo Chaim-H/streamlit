@@ -52,9 +52,9 @@ def prediction(
     new_threshold = sigmoid_moved_to_2(threshold)
 
     if predict >= new_threshold:
-        pred = f'does\'nt accumulate {predict}'
+        pred = f'does\'nt accumulate'
     else:
-        pred = f'accumulate {predict}'
+        pred = f'accumulate'
 
 #     print(prediction, threshold, new_threshold, pred)
 
