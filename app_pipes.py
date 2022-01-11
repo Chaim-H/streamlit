@@ -24,7 +24,7 @@ def sigmoid_moved_to_2(x):
     return y
 
 def power(x):
-    POWER = 2
+    POWER = 1
     return x**POWER / (x**POWER+2)
 
 def logit_2(x):
