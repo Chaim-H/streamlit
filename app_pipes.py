@@ -59,7 +59,7 @@ def prediction(
 #         pred = f'accumulate (probably: {100*(power(abs(threshold-logit_2(predict)))):.0f}%)'
         pred = f'does\'nt accumulate'
 
-#     print(prediction, threshold, new_threshold, pred)
+    print(prediction, threshold, new_threshold, pred)
 
     return pred
       
