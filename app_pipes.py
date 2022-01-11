@@ -52,13 +52,11 @@ def prediction(
     new_threshold = sigmoid_moved_to_2(threshold)
 
     if prediction >= new_threshold:
-        pred = f'does\'nt accumulate ({logit_2(prediction)}, probably: {100*(power(abs(threshold-logit_2(prediction)))):.0f}%)'
-
+        pred = f'does\'nt accumulate'
     else:
-        pred = f'accumulate \n(predicted shear stress: {logit_2(prediction):.2f}, \nprobably for accumulate: {100*(power(abs(threshold-logit_2(prediction)))):.0f}%)'
-#     print(prediction, threshold, new_threshold, pred)
+        pred = f'accumulate'
 
-    return pred
+    return pred, logit_2(prediction), 100*(power(abs(threshold-logit_2(prediction))))
 
       
   
@@ -109,7 +107,10 @@ def main():
                         betweeness, closeness, current_flow_closeness, second_order, katz_cent, harmonic_centrality, degree,
                         threshold
                         )
-        st.success(f'Your pipe {result}')
+        100*(power(abs(threshold-logit_2(prediction))))
+                pred = f'does\'nt accumulate ({logit_2(prediction)}, probably: {100*(power(abs(threshold-logit_2(prediction)))):.0f}%)'
+
+        st.success(f'Your pipe {result[0]}.\n (probably: {result[2]:.0f}%')
 #         print(LoanAmount)
      
 if __name__=='__main__': 
