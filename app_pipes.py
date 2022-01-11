@@ -58,7 +58,7 @@ def prediction(
 
     print(prediction, threshold, new_threshold, pred)
 
-    return pred
+    return predict
       
   
 # this is the main function in which we define our webpage  
