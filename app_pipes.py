@@ -1,5 +1,3 @@
-%%writefile app_pipes.py
-
 import pickle
 import streamlit as st
 import zipfile
