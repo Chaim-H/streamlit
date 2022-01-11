@@ -44,20 +44,24 @@ def prediction(
     pickle_in = open('classifier_pipes.pkl', 'rb') 
     classifier = pickle.load(pickle_in)
  
-    prediction = classifier.predict_proba( 
+    predict = classifier.predict_proba( 
         [[linkdiameter, linkslope, Q_flow, Q_type_uniform,
     streamorderSH ,Link_residents ,Aspect_ratio ,real_density,
     betweeness, closeness, current_flow_closeness, second_order, katz_cent, harmonic_centrality, degree]])[0][1]
 #     for threshold in [0,0.5,1,1.5,2,2.5,3,3.5,4,10,100]:
     new_threshold = sigmoid_moved_to_2(threshold)
 
-    if prediction >= new_threshold:
+    if predict >= new_threshold:
+#         pred = f'does\'nt accumulate (probably: {100*(power(abs(threshold-logit_2(predict)))):.0f}%)'
         pred = f'does\'nt accumulate'
+
     else:
-        pred = f'accumulate'
+#         pred = f'accumulate (probably: {100*(power(abs(threshold-logit_2(predict)))):.0f}%)'
+        pred = f'does\'nt accumulate'
 
-    return pred, logit_2(prediction), 100*(power(abs(threshold-logit_2(prediction))))
+#     print(prediction, threshold, new_threshold, pred)
 
+    return pred
       
   
 # this is the main function in which we define our webpage  
@@ -107,7 +111,7 @@ def main():
                         betweeness, closeness, current_flow_closeness, second_order, katz_cent, harmonic_centrality, degree,
                         threshold
                         )
-        st.success(f'Your pipe {result[0]}')
+        st.success('Your pipe {}'.format(result))
 #         print(LoanAmount)
      
 if __name__=='__main__': 
