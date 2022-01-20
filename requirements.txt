@@ -2,4 +2,3 @@ sklearn
 streamlit
 scipy
 numpy
-pickle
