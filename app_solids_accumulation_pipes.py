@@ -63,7 +63,7 @@ def prediction(x, threshold, regressor, pca, train_location, point_round):
         pred = f'doesn\'t accumulate {probably}, {regressor.predict(x)[0]:.2f}'
         
     # return
-    return pred, warning, regressor.predict(x)[0], in_train
+    return pred, warning, in_train
 
 # this is the main function in which we define our webpage  
 def main():       
@@ -78,7 +78,7 @@ def main():
       
     html_temp = """ 
     <div style ="background-color:yellow;padding:13px"> 
-    <h1 style ="color:black;text-align:center;">(Based on a machine learning model (Harpaz et al., under review))</h1> 
+    <h1 style ="color:black;text-align:center;">Based on a machine learning model \n(Harpaz et al., under review)</h1> 
     </div> 
     
     
