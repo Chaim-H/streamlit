@@ -58,9 +58,9 @@ def prediction(x, threshold, regressor, pca, train_location, point_round):
     
     # calculate the prediction:
     if regressor.predict(x)[0] < threshold:
-        pred = f'accumulate {probably}, {regressor.predict(x)[0]:.2f}'
+        pred = f'accumulate {probably}' #, {regressor.predict(x)[0]:.2f}'
     else: 
-        pred = f'doesn\'t accumulate {probably}, {regressor.predict(x)[0]:.2f}'
+        pred = f'doesn\'t accumulate {probably}' #, {regressor.predict(x)[0]:.2f}'
         
     # return
     return pred, warning, in_train
