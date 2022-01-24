@@ -58,9 +58,9 @@ def prediction(x, threshold, regressor, pca, train_location, point_round):
     
     # calculate the prediction:
     if regressor.predict(x)[0] < threshold:
-        pred = f'accumulate {probably}' #, {regressor.predict(x)[0]:.2f}'
+        pred = f'accumulate' # {probably}' , {regressor.predict(x)[0]:.2f}'
     else: 
-        pred = f'doesn\'t accumulate {probably}' #, {regressor.predict(x)[0]:.2f}'
+        pred = f'doesn\'t accumulate' # {probably}' #, {regressor.predict(x)[0]:.2f}'
         
     # return
     return pred, warning, in_train
@@ -93,6 +93,11 @@ def main():
     0.00000000e+00, 6.63697100e-02, 4.45434000e-04, 1.07529531e+03,
     7.29700590e-02, 1.39022858e+01, 1.00000000e+00
     ]])
+    
+    x[0][2] = st.slider("Proportion of reduction in wastewater flow (due to DWES scenario) [-]:", min_value=0.1000, max_value=1.0000, value=(0.7000), step=0.1)
+    threshold = st.number_input("Threshold value of the maximum shear stress below the pipe will accumulate solids (2 Pa typical value) [Pa]:",min_value=0.0, max_value=100.0, value=(2.0), step=0.05) 
+    st.write('Pipe and network parameters:')
+
     x[0][0]  = st.select_slider('Diameter of the pipe [m]:', options=[0.1882, 0.2354, 0.2966, 0.3766, 0.4708, 0.5932])
     x[0][1] = st.slider('Slope of the pipe [%]:', min_value=0.29, max_value=10.01, value=(4.42))/100
     x[0][3] = 1 #st.slider("What is Type reduction                ?", min_value=0.0000, max_value=1.0000, value=(1.0000))
@@ -108,10 +113,6 @@ def main():
     x[0][6] = st.slider("Aspect ratio of the network [-]:", min_value=0.133, max_value=7.5, value=(0.83))
     x[0][7] = st.slider("Density of the network? [person/km\u00b2]", min_value=4505, max_value=32060, value=(26210))/1000
     
-#     st.write('Parameters for prediction:')
-    x[0][2] = st.slider("Proportion of reduction in wastewater flow (due to DWES scenario) [-]:", min_value=0.1000, max_value=1.0000, value=(0.7000), step=0.1)
-    threshold = st.number_input("Threshold value of the maximum shear stress below the pipe will accumulate solids (2 Pa typical value) [Pa]:",min_value=0.0, max_value=100.0, value=(2.0), step=0.05) 
-  
     result =""
     # when 'Predict' is clicked, make the prediction and store it 
     if st.button("Predict"):
