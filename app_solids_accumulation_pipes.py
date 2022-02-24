@@ -132,9 +132,9 @@ def main():
      ('Comedy', 'Drama', 'Documentary'))
 
     if genre == 'Comedy':
-         st.write('You selected comedy.')
-     else:
-         st.write("You didn't select comedy.")
+        st.write('You selected comedy.')
+    else:
+        st.write("You didn't select comedy.")
         
     st.write('Harpaz C., Russo S., Leitão J.P., Penn  R., (under review). Potential of supervised machine learning algorithms for estimating the impact of water efficient scenarios on solids accumulation in sewers')
      
