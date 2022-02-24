@@ -70,7 +70,7 @@ def main():
     # front end elements of the web page 
     html_temp = """ 
     <div style ="background-color:yellow;padding:13px"> 
-    <h1 style ="color:black;text-align:center;">Tool for predicting solids accumulation in sewer pipes</h1> 
+    <h1 style ="color:black;text-align:center;font-size:30px;">Tool for predicting solids accumulation in sewer pipes</h1> 
     </div> 
     """
     # display the front end aspect
@@ -78,10 +78,8 @@ def main():
       
     html_temp = """ 
     <div style ="background-color:yellow;padding:13px"> 
-    <h1 style ="color:black;text-align:center;">Based on a machine learning model \n(Harpaz et al., under review)</h1> 
+    <h1 style ="color:black;text-align:center;font-size:20px;">Based on a machine learning model \n(Harpaz et al., under review)</h1> 
     </div> 
-    
-    
     """
     # display the front end aspect
     st.markdown(html_temp, unsafe_allow_html = True) 
