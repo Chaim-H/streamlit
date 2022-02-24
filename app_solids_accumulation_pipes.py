@@ -127,7 +127,7 @@ def main():
             st.success('{}'.format(result[1]))
         st.success('Your pipe {}'.format(result[0]))
         
-        html_temp = """ 
+    html_temp = """ 
     <div style ="background-color:azure;"> 
     <h1 style ="color:black;text-align:center;font-size:20px;">Medium case</h1> 
     </div> 
