@@ -69,7 +69,7 @@ def prediction(x, threshold, regressor, pca, train_location, point_round):
 def main():       
     # front end elements of the web page 
     html_temp = """ 
-    <div style ="background-color:white;padding:13px"> 
+    <div style ="background-color:white;padding:0px"> 
     <h1 style ="color:black;text-align:center;font-size:30px;">Tool for predicting solids accumulation in sewer pipes</h1> 
     </div> 
     """
@@ -77,7 +77,7 @@ def main():
     st.markdown(html_temp, unsafe_allow_html = True) 
       
     html_temp = """ 
-    <div style ="background-color:white;padding:30px"> 
+    <div style ="background-color:white;"> 
     <h1 style ="color:black;text-align:center;font-size:25px;">Based on a machine learning model \n(Harpaz et al., under review)</h1> 
     </div> 
     """
