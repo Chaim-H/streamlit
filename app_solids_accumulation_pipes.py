@@ -116,10 +116,11 @@ def main():
     if case == 'Medium':
         st.write('Pipe and network parameters:')
         x[0][0]  = st.select_slider('Diameter of the pipe [m]:', options=[0.1882, 0.2354, 0.2966, 0.3766, 0.4708, 0.5932])
-        x[0][1] = st.slider('Slope of the pipe [%]:', min_value=0.29, max_value=10.01, value=(4.42))/100
-        x[0][3] = 1 #st.slider("What is Type reduction                ?", min_value=0.0000, max_value=1.0000, value=(1.0000))
+        slope_dict = {'0.03-1': 0.65, '1-2': 1.5, '2-3': 2.5, '3-5': 4, '5-10': 7.5}
+        x[0][1] = slope_dict[st.select_slider('Range of slope of the pipe [%]:', options=['0.03-1', '1-2', '2-3', '3-5', '5-10'])]
+        x[0][3] = 1
         x[0][4] = st.slider("Stream order of the pipe [-]:", min_value=1, max_value=75, value=(1))
-        x[0][5] = st.slider("Number of residents discharging wastewater to the pipe [-]:", min_value=9, max_value=62146, value=(106))
+        x[0][5] = 860 + 550 * x[0][4]
         x[0][8] = st.slider("Betweenness centrality of the pipe [-]:", min_value=0.0000, max_value=0.7041, value=(0.0000))
         x[0][9] = st.slider("Closeness centrality of the pipe [-]:", min_value=0.0209, max_value=0.1944, value=(0.0664))
         x[0][10] = st.slider("Current flow closeness centrality of the pipe [-]:", min_value=0.01, max_value=0.40, value=(0.04))/100
