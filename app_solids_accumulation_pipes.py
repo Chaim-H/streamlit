@@ -120,7 +120,7 @@ def main():
         x[0][1] = slope_dict[st.select_slider('Range of slope of the pipe [%]:', options=['0.03-1', '1-2', '2-3', '3-5', '5-10'])]
         x[0][3] = 1
         x[0][4] = st.slider("Stream order of the pipe [-]:", min_value=1, max_value=75, value=(1))
-        x[0][5] = 860 + 550 * x[0][4]
+        x[0][5] = 10 + 550 * x[0][4]
         x[0][8] = st.slider("Betweenness centrality of the pipe [-]:", min_value=0.0000, max_value=0.7041, value=(0.0000))
         x[0][9] = st.slider("Closeness centrality of the pipe [-]:", min_value=0.0209, max_value=0.1944, value=(0.0664))
         x[0][10] = st.slider("Current flow closeness centrality of the pipe [-]:", min_value=0.01, max_value=0.40, value=(0.04))/100
