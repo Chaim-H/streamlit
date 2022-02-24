@@ -127,7 +127,13 @@ def main():
             st.success('{}'.format(result[1]))
         st.success('Your pipe {}'.format(result[0]))
     st.write('Harpaz C., Russo S., Leitão J.P., Penn  R., (under review). Potential of supervised machine learning algorithms for estimating the impact of water efficient scenarios on solids accumulation in sewers')
-     
+    html_temp = """ 
+    <div style ="background-color:bisque;"> 
+    <h1 style ="color:black;text-align:center;font-size:20px;">Harpaz C., Russo S., Leitão J.P., Penn  R., (under review). Potential of supervised machine learning algorithms for estimating the impact of water efficient scenarios on solids accumulation in sewers'</h1> 
+    </div> 
+    """
+    # display the front end aspect
+    st.markdown(html_temp, unsafe_allow_html = True)      
 if __name__=='__main__': 
     main()
     
