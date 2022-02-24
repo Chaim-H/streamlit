@@ -126,50 +126,16 @@ def main():
         if result[1] != "":
             st.success('{}'.format(result[1]))
         st.success('Your pipe {}'.format(result[0]))
+    
+    genre = st.radio(
+     "What's your favorite movie genre",
+     ('Comedy', 'Drama', 'Documentary'))
+
+    if genre == 'Comedy':
+         st.write('You selected comedy.')
+     else:
+         st.write("You didn't select comedy.")
         
-    html_temp = """ 
-    <div style ="background-color:azure;"> 
-    <h1 style ="color:black;text-align:center;font-size:20px;">Medium case</h1> 
-    </div> 
-    """
-    # display the front end aspect
-    st.markdown(html_temp, unsafe_allow_html = True) 
-    # following lines create boxes in which user can enter data required to make prediction 
-
-    x = np.array([[
-    1.88200000e-01, 4.41795230e-02, 7.00000000e-01, 1.00000000e+00,
-    1.00000000e+00, 1.06000000e+02, 8.33333333e-01, 2.62135673e+01,
-    0.00000000e+00, 6.63697100e-02, 4.45434000e-04, 1.07529531e+03,
-    7.29700590e-02, 1.39022858e+01, 1.00000000e+00
-    ]])
-    
-    x[0][2] = st.slider("Proportion of reduction in wastewater flow (due to DWES scenario) [-]:", min_value=0.1000, max_value=1.0000, value=(0.7000), step=0.1)
-    threshold = st.number_input("Threshold value of the maximum shear stress below the pipe will accumulate solids (2 Pa typical value) [Pa]:",min_value=0.0, max_value=100.0, value=(2.0), step=0.05) 
-    st.write('Pipe and network parameters:')
-
-    x[0][0]  = st.select_slider('Diameter of the pipe [m]:', options=[0.1882, 0.2354, 0.2966, 0.3766, 0.4708, 0.5932])
-    x[0][1] = st.slider('Slope of the pipe [%]:', min_value=0.29, max_value=10.01, value=(4.42))/100
-    x[0][3] = 1 #st.slider("What is Type reduction                ?", min_value=0.0000, max_value=1.0000, value=(1.0000))
-    x[0][4] = st.slider("Stream order of the pipe [-]:", min_value=1, max_value=75, value=(1))
-    x[0][5] = st.slider("Number of residents discharging wastewater to the pipe [-]:", min_value=9, max_value=62146, value=(106))
-    x[0][8] = st.slider("Betweenness centrality of the pipe [-]:", min_value=0.0000, max_value=0.7041, value=(0.0000))
-    x[0][9] = st.slider("Closeness centrality of the pipe [-]:", min_value=0.0209, max_value=0.1944, value=(0.0664))
-    x[0][10] = st.slider("Current flow closeness centrality of the pipe [-]:", min_value=0.01, max_value=0.40, value=(0.04))/100
-    x[0][11] = st.slider("Second order centrality of the pipe [-]:", min_value=129.0504, max_value=4789.9608, value=(1075.2953))
-    x[0][12] = st.slider("Katz centrality of the pipe [-]:", min_value=0.0514, max_value=0.1742, value=(0.0730))
-    x[0][13] = st.slider("Harmonic centrality of the pipe [-]:", min_value=5.7243, max_value=28.8047, value=(13.9023))
-    x[0][14] = st.slider("Node degree of the pipe [-]:", min_value=1, max_value=5, value=(1))
-    x[0][6] = st.slider("Aspect ratio of the network [-]:", min_value=0.133, max_value=7.5, value=(0.83))
-    x[0][7] = st.slider("Density of the network? [person/km\u00b2]", min_value=4505, max_value=32060, value=(26210))/1000
-    
-    result =""
-    # when 'Predict' is clicked, make the prediction and store it 
-    if st.button("Predict"):
-        result = prediction(x, threshold, regressor, pca, train_location, point_round)
-        if result[1] != "":
-            st.success('{}'.format(result[1]))
-        st.success('Your pipe {}'.format(result[0]))
-    
     st.write('Harpaz C., Russo S., Leitão J.P., Penn  R., (under review). Potential of supervised machine learning algorithms for estimating the impact of water efficient scenarios on solids accumulation in sewers')
      
 if __name__=='__main__': 
