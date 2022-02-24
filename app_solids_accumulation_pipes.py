@@ -126,10 +126,10 @@ def main():
         if result[1] != "":
             st.success('{}'.format(result[1]))
         st.success('Your pipe {}'.format(result[0]))
-    st.write('Harpaz C., Russo S., Leitão J.P., Penn  R., (under review). Potential of supervised machine learning algorithms for estimating the impact of water efficient scenarios on solids accumulation in sewers')
+    
     html_temp = """ 
     <div style ="background-color:azure;"> 
-    <h1 style ="color:black;text-align:left;font-size:18px;">Harpaz C., Russo S., Leitão J.P., Penn  R., (under review). Potential of supervised machine learning algorithms for estimating the impact of water efficient scenarios on solids accumulation in sewers'</h1> 
+    <h1 style ="color:black;text-align:left;font-size:18px;">Harpaz C., Russo S., Leitão J.P., Penn  R., (under review). Potential of supervised machine learning algorithms for estimating the impact of water efficient scenarios on solids accumulation in sewers</h1> 
     </div> 
     """
     # display the front end aspect
