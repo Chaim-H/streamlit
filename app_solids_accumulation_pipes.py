@@ -95,7 +95,8 @@ def main():
        
     x[0][2] = st.slider("Proportion of reduction in wastewater flow (due to DWES scenario) [-]:", min_value=0.1000, max_value=1.0000, value=(0.7000), step=0.1)
     threshold = st.number_input("Threshold value of the maximum shear stress below the pipe will accumulate solids (2 Pa typical value) [Pa]:",min_value=0.0, max_value=100.0, value=(2.0), step=0.05) 
-    case = st.radio("Case (Classification of the features according to availability and collection effort)",('Difficult (all features)', 'Medium'))
+    st.write('Case:')
+    case = st.radio("Classification according to the availability and collection effort of the features",('Difficult (all features)', 'Medium (a range of slope is needed and the number of residents is not required)'))
     st.write('Pipe and network parameters:')
     if case == 'Difficult (all features)':
         x[0][1] = st.slider('Slope of the pipe [%]:', min_value=0.29, max_value=10.01, value=(4.42))/100
