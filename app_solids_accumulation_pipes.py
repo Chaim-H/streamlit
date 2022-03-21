@@ -102,7 +102,7 @@ def main():
         x[0][1] = st.slider('Slope of the pipe [%]:', min_value=0.29, max_value=10.01, value=(4.42))/100
         x[0][5] = st.slider("Number of residents discharging wastewater to the pipe [-]:", min_value=9, max_value=62146, value=(106))
         x[0][4] = st.slider("Stream order of the pipe [-]:", min_value=1, max_value=75, value=(1))
-    if case == 'Medium':
+    if case == 'Medium (a range of slope is needed and the number of residents is not required)':
         slope_dict = {'0.03-1': 0.65, '1-2': 1.5, '2-3': 2.5, '3-5': 4, '5-10': 7.5}
         x[0][1] = slope_dict[st.select_slider('Range of slope of the pipe [%]:', options=['0.03-1', '1-2', '2-3', '3-5', '5-10'])]
         x[0][4] = st.slider("Stream order of the pipe [-]:", min_value=1, max_value=75, value=(1))
