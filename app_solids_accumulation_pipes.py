@@ -78,7 +78,7 @@ def main():
       
     html_temp = """ 
     <div style ="background-color:bisque;"> 
-    <h1 style ="color:black;text-align:center;font-size:20px;">Based on a machine learning model \n(Harpaz et al., under review)</h1> 
+    <h1 style ="color:black;text-align:center;font-size:20px;">Based on a machine learning model \n(Harpaz et al., 2022)</h1> 
     </div> 
     """
     # display the front end aspect
@@ -129,7 +129,7 @@ def main():
     
     html_temp = """ 
     <div style ="background-color:azure;"> 
-    <h1 style ="color:black;text-align:left;font-size:18px;">Harpaz C., Russo S., Leitão J.P., Penn  R., (under review). Potential of supervised machine learning algorithms for estimating the impact of water efficient scenarios on solids accumulation in sewers</h1> 
+    <h1 style ="color:black;text-align:left;font-size:18px;">Harpaz C., Russo S., Leitão J.P., Penn  R., 2022. Potential of supervised machine learning algorithms for estimating the impact of water efficient scenarios on solids accumulation in sewers. Water Research, 216</h1> 
     </div> 
     """
     # display the front end aspect
