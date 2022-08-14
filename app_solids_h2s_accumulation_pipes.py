@@ -135,7 +135,13 @@ def main():
         if result[1] != "":
             st.success('{}'.format(result[1]))
         st.success('Your pipe {}'.format(result[0]))
-    
+    x
+    scaler.transform(x)
+    x = np.append(x, [[20], [1]])
+    x[0][15] = st.slider("Temperature [-]:", min_value=10, max_value=30, value=(20), step=1)
+    x[0][16] = st.slider("COD [-]:", min_value=1.0, max_value=4.0, value=(2.0), step=1)
+
+
     html_temp = """ 
     <div style ="background-color:azure;"> 
     <h1 style ="color:black;text-align:left;font-size:18px;">Harpaz C., Russo S., Leitão J.P., Penn  R., 2022. Potential of supervised machine learning algorithms for estimating the impact of water efficient scenarios on solids accumulation in sewers. Water Research, 216</h1> 
