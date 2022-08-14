@@ -97,6 +97,13 @@ def main():
     '''
     [diameter, slope, q_flow, type_reduction, SO, 
      link_residents, aspect_ratio, density, betweenneess, closennes, current_flow, second_order, kats, harmonic, node_degree, temp, cod]
+     
+     'Closeness centrality', 'Betweenness centrality', 'Current flow closeness centrality',
+'Second order centrality', 'Katz centrality', 'Harmonic centrality',
+'Pipe diameter', 'Node degree', 'Pipe slope', 'Stream order', 'Flow proportion',
+ 'Pipe residents', 'Aspect ratio', 'Density', 'COD', 'Temperature']
+ 
+ x = x[[8,9,10,11,12,13,0,14,1,4,2,5,6,7]]
     '''   
     x[0][2] = st.slider("Proportion of reduction in wastewater flow (due to DWES scenario) [-]:", min_value=0.1000, max_value=1.0000, value=(0.7000), step=0.1)
 #     x[0][15] = st.slider("Temperature [-]:", min_value=10, max_value=30, value=(20), step=1)
@@ -141,12 +148,14 @@ def main():
 
     temperature = st.slider("Temperature [-]:", min_value=10, max_value=30, value=(20), step=1)
     cod = st.slider("COD [-]:", min_value=1.0, max_value=4.0, value=(1.0), step=0.1)
-    x = np.append(scaler.transform(x),
+    x = np.append(scaler.transform(x)[[8,9,10,11,12,13,0,14,1,4,2,5,6,7]],
                   [
                     [StandardScaler().fit([[10], [20], [30]]).transform([[temperature]])[0][0]],
                     [StandardScaler().fit([[1], [1.5], [2], [3],[ 4]]).transform([[cod]])[0][0]],
                   ])
     x
+#      x = x[[8,9,10,11,12,13,0,14,1,4,2,5,6,7]]
+
     loaded_rf = joblib.load("rrf_h2s.joblib")
     loaded_rf.predict(x.reshape(1,-1)) > 2
 
