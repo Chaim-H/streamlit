@@ -92,9 +92,10 @@ def main():
     0.00000000e+00, 6.63697100e-02, 4.45434000e-04, 1.07529531e+03,
     7.29700590e-02, 1.39022858e+01, 1.00000000e+00, 30, 1,
     ]])
+    '''
     [diameter, slope, q_flow, type_reduction, SO, 
-     link_residents, aspect_ratio, density, betweenneess, closennes, current_flow, second_order, kats, harmonic, node_degree, temp, cod
-       
+     link_residents, aspect_ratio, density, betweenneess, closennes, current_flow, second_order, kats, harmonic, node_degree, temp, cod]
+    '''   
     x[0][2] = st.slider("Proportion of reduction in wastewater flow (due to DWES scenario) [-]:", min_value=0.1000, max_value=1.0000, value=(0.7000), step=0.1)
     x[0][15] = st.slider("Temperature [-]:", min_value=10, max_value=30, value=(20), step=1)
     x[0][16] = st.slider("COD [-]:", min_value=1, max_value=4, value=(1), step=0.1)
