@@ -57,7 +57,7 @@ def prediction(x, threshold, regressor, pca, train_location, point_round):
     probably = f'(probably: {100*(prob):.0f}%)'
     
     # calculate the prediction:
-    if regressor.predict(x)[0] < threshold:
+    if regressor.predict(x)[0][:-2] < threshold:
         pred = f'accumulate' # {probably}' , {regressor.predict(x)[0]:.2f}'
     else: 
         pred = f'doesn\'t accumulate' # {probably}' #, {regressor.predict(x)[0]:.2f}'
