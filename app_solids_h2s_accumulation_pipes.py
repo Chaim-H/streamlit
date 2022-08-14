@@ -72,7 +72,7 @@ def main():
     # front end elements of the web page 
     html_temp = """ 
     <div style ="background-color:bisque;"> 
-    <h1 style ="color:black;text-align:center;font-size:25px;">Tool for predicting solids and sulphides accumulation in sewer pipes</h1> 
+    <h1 style ="color:black;text-align:center;font-size:23px;">Tool for predicting solids and sulphids accumulation in sewer pipes</h1> 
     </div> 
     """
     # display the front end aspect
@@ -84,7 +84,7 @@ def main():
     </div> 
     """
     # display the front end aspect
-    st.markdown(html_temp, unsafe_allow_html = True) 
+#     st.markdown(html_temp, unsafe_allow_html = True) 
     
     # following lines create boxes in which user can enter data required to make prediction 
 
