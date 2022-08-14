@@ -148,7 +148,7 @@ def main():
                   ])
     x
     loaded_rf = joblib.load("rrf_h2s.joblib")
-    loaded_rf.predict(x.reshape(1,-1)) > 2)
+    loaded_rf.predict(x.reshape(1,-1)) > 2
 
 
     html_temp = """ 
