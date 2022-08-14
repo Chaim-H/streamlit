@@ -138,9 +138,15 @@ def main():
             st.success('{}'.format(result[1]))
         st.success('Your pipe {}'.format(result[0]))
     
-    x = np.append(scaler.transform(x), [[20.0], [1.0]])
-    x
+
     temperature = st.slider("Temperature [-]:", min_value=10, max_value=30, value=(20), step=1)
+    cod = st.slider("COD [-]:", min_value=1.0, max_value=4.0, value=(1.0), step=0.1)
+    x = np.append(scaler.transform(x),
+                  [
+                    [StandardScaler().fit([[10], [20], [30]]).transform([[temperature]])[0][0]],
+                    [StandardScaler().fit([[1], [1.5], [2], [3],[ 4]]).transform([[5]])[0][0]],
+                  ])
+    x
 #     x[0][15] = st.slider("Temperature [-]:", min_value=10, max_value=30, value=(20), step=1)
 #     x[0][16] = st.slider("COD [-]:", min_value=1.0, max_value=4.0, value=(2.0), step=1)
      
