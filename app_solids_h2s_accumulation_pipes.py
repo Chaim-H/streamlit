@@ -150,14 +150,13 @@ def main():
     cod = st.slider("COD [-]:", min_value=1.0, max_value=4.0, value=(1.0), step=0.1)
     x = scaler.transform(x)
     x.shape
-    x = x[0][8,9,10,11,12,13,0,14,1,4,2,5,6,7]
+    x = x.reshape(-1,1).reshape(-1,1)[[8,9,10,11,12,13,0,14,1,4,2,5,6,7]]
     x = np.append(x,
                   [
                     [StandardScaler().fit([[10], [20], [30]]).transform([[temperature]])[0][0]],
                     [StandardScaler().fit([[1], [1.5], [2], [3],[ 4]]).transform([[cod]])[0][0]],
                   ])
     x
-#      x = x[[8,9,10,11,12,13,0,14,1,4,2,5,6,7]]
 
     loaded_rf = joblib.load("rrf_h2s.joblib")
     loaded_rf.predict(x.reshape(1,-1)) > 2
