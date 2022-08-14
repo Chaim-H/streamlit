@@ -125,8 +125,8 @@ def main():
     x[0][14] = st.slider("Node degree of the pipe [-]:", min_value=1, max_value=5, value=(1))
     x[0][6] = st.slider("Aspect ratio of the network [-]:", min_value=0.133, max_value=7.5, value=(0.83))
     x[0][7] = st.slider("Density of the network? [person/km\u00b2]", min_value=4505, max_value=32060, value=(26210))/1000
-    StandardScaler().fit([[1], [1.5], [2], [3],[ 4]]).transform([[5]])[0][0]
-    StandardScaler().fit([[10], [20], [30]]).transform([[10]])[0][0]
+#     StandardScaler().fit([[1], [1.5], [2], [3],[ 4]]).transform([[5]])[0][0]
+#     StandardScaler().fit([[10], [20], [30]]).transform([[10]])[0][0]
     
     result =""
     # when 'Predict' is clicked, make the prediction and store it 
@@ -135,12 +135,11 @@ def main():
         if result[1] != "":
             st.success('{}'.format(result[1]))
         st.success('Your pipe {}'.format(result[0]))
-    x
-    scaler.transform(x)
-    x = np.append(x, [[20], [1]])
+    
+    x = np.append(scaler.transform(x), [[20], [1]])
     x[0][15] = st.slider("Temperature [-]:", min_value=10, max_value=30, value=(20), step=1)
     x[0][16] = st.slider("COD [-]:", min_value=1.0, max_value=4.0, value=(2.0), step=1)
-
+    x
 
     html_temp = """ 
     <div style ="background-color:azure;"> 
