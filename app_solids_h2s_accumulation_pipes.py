@@ -103,9 +103,7 @@ def main():
 # 'Pipe diameter', 'Node degree', 'Pipe slope', 'Stream order', 'Flow proportion',
 #  'Pipe residents', 'Aspect ratio', 'Density', 'COD', 'Temperature']
       
-    x[0][2] = st.slider("Proportion of reduction in wastewater flow (due to DWES scenario) [-]:", min_value=0.1000, max_value=1.0000, value=(0.7000), step=0.1)
-    threshold = st.number_input("Threshold value of the maximum shear stress below the pipe will accumulate solids (2 Pa typical value) [Pa]:",min_value=0.0, max_value=100.0, value=(2.0), step=0.05) 
-     
+
     st.write('Case:')
     case = st.radio("Classification according to the availability and collection effort of the features",('Difficult (all features)', 'Medium (a range of slope is needed and the number of residents is not required)'))
     st.write('Pipe and network parameters:')
@@ -129,21 +127,28 @@ def main():
     x[0][14] = st.slider("Node degree of the pipe [-]:", min_value=1, max_value=5, value=(1))
     x[0][6] = st.slider("Aspect ratio of the network [-]:", min_value=0.133, max_value=7.5, value=(0.83))
     x[0][7] = st.slider("Density of the network? [person/km\u00b2]", min_value=4505, max_value=32060, value=(26210))/1000
-
     
-    result =""
-    # when 'Predict' is clicked, make the prediction and store it 
-    if st.button("Predict solids"):
-        result = prediction(x, threshold, regressor, pca, train_location, point_round)
-        if result[1] != "":
-            st.success('{}'.format(result[1]))
-        st.success('Your pipe {}'.format(result[0]))
-    
-
+    x[0][2] = st.slider("Proportion of reduction in wastewater flow (due to DWES scenario) [-]:", min_value=0.1000, max_value=1.0000, value=(0.7000), step=0.1)
     temperature = st.slider("Temperature [-]:", min_value=10, max_value=30, value=(20), step=1)
     cod = st.slider("COD [-]:", min_value=1.0, max_value=4.0, value=(1.0), step=0.1)
+    threshold = st.slider(
+        "Threshold value of the maximum shear stress below the pipe will accumulate solids (2 Pa typical value) [Pa]:", 
+        min_value=1.5, max_value=2.5, value=(2.0), step=0.1)
+    threshold_h2s = st.slider(
+        "Threshold value of the maximum sulphid than an hour in day:", 
+        min_value=0.25, max_value=2.5, value=(2.0), step=0.25)
+
+    result =""
+    # when 'Predict' is clicked, make the prediction and store it 
+#     if st.button("Predict solids"):
+    result = prediction(x, threshold, regressor, pca, train_location, point_round)
+    if result[1] != "":
+        st.success('{}'.format(result[1]))
+    st.success('Your pipe {}'.format(result[0]))
+    
+
+
     x = scaler.transform(x)
-    x.shape
     x = x.reshape(-1,1).reshape(-1,1)[[8,9,10,11,12,13,0,14,1,4,2,5,6,7]]
     x = np.append(x,
                   [
@@ -153,13 +158,10 @@ def main():
     loaded_rf = joblib.load("rrf_h2s.joblib")
 #     if st.button("Predict H2S"):
     loaded_rf.predict(x.reshape(1,-1))
-    if loaded_rf.predict(x.reshape(1,-1)) > 2:
+    if loaded_rf.predict(x.reshape(1,-1)) > threshold_h2s:
         st.success('Your pipe H2S acc')
     else:
         st.success('Your pipe do not H2S acc')
-
-
-
 
     html_temp = """ 
     <div style ="background-color:azure;"> 
