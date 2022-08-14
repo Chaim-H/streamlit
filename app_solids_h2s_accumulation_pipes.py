@@ -108,7 +108,9 @@ def main():
         x[0][4] = st.slider("Stream order of the pipe [-]:", min_value=1, max_value=75, value=(1))
         x[0][5] = 10 + 550 * x[0][4]
     x[0][3] = 1 # st.slider("What is Type reduction                ?", min_value=0.0000, max_value=1.0000, value=(1.0000))
-    x[0][0]  = st.select_slider('Diameter of the pipe [m]:', options=[0.1882, 0.2354, 0.2966, 0.3766, 0.4708, 0.5932])
+    def get_num(a):
+        return a
+    x[0][0]  = get_num(st.select_slider('Diameter of the pipe [m]:', options=[0.1882, 0.2354, 0.2966, 0.3766, 0.4708, 0.5932]))
     x[0][8] = st.slider("Betweenness centrality of the pipe [-]:", min_value=0.0000, max_value=0.7041, value=(0.0000))
     x[0][9] = st.slider("Closeness centrality of the pipe [-]:", min_value=0.0209, max_value=0.1944, value=(0.0664))
     x[0][10] = st.slider("Current flow closeness centrality of the pipe [-]:", min_value=0.01, max_value=0.40, value=(0.04))/100
