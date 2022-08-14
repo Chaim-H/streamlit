@@ -104,9 +104,9 @@ def main():
 #  'Pipe residents', 'Aspect ratio', 'Density', 'COD', 'Temperature']
       
 
-    st.header('Case:')
+    st.subheader('Case:')
     case = st.radio("Classification according to the availability and collection effort of the features",('Difficult (all features)', 'Medium (a range of slope is needed and the number of residents is not required)'))
-    st.write('Pipe and network parameters:')
+    st.subheader('Pipe and network parameters:')
     if case == 'Difficult (all features)':
         x[0][1] = st.slider('Slope of the pipe [%]:', min_value=0.29, max_value=10.01, value=(4.42))/100
         x[0][5] = st.slider("Number of residents discharging wastewater to the pipe [-]:", min_value=9, max_value=62146, value=(106))
@@ -127,11 +127,11 @@ def main():
     x[0][14] = st.slider("Node degree of the pipe [-]:", min_value=1, max_value=5, value=(1))
     x[0][6] = st.slider("Aspect ratio of the network [-]:", min_value=0.133, max_value=7.5, value=(0.83))
     x[0][7] = st.slider("Density of the network? [person/km\u00b2]", min_value=4505, max_value=32060, value=(26210))/1000
-    st.write('Simulation parameters:')
+    st.subheader('Simulation parameters:')
     x[0][2] = st.slider("Proportion of reduction in wastewater flow (due to DWES scenario) [-]:", min_value=0.1000, max_value=1.0000, value=(0.7000), step=0.1)
     temperature = st.slider("Temperature [C"+u"\u00b0" +"]:", min_value=10, max_value=30, value=(20), step=1)     #Temperature = "Temperature [C"+u"\u00b0" +"]"
     cod = st.slider("Increase in COD [-]:", min_value=1.0, max_value=4.0, value=(1.0), step=0.1)
-    st.write('Thresholds:')
+    st.subheader('Thresholds:')
 
     threshold = st.slider(
         "Threshold value of the maximum shear stress below the pipe will accumulate solids (2 Pa typical value) [Pa]:", 
@@ -139,8 +139,7 @@ def main():
     threshold_h2s = st.slider(
         "Threshold value for more than an hour a day: [mgS\l]", 
         min_value=0.25, max_value=2.5, value=(2.0), step=0.25)
-    st.write('ML predictions:')
-    st.markdown('Streamlit is **_really_ cool**.')
+    st.subheader('ML predictions:')
 
     result =""
     # when 'Predict' is clicked, make the prediction and store it 
@@ -172,6 +171,6 @@ def main():
 #     </div> 
 #     """
     # display the front end aspect
-    st.markdown(html_temp, unsafe_allow_html = True)      
+#     st.markdown(html_temp, unsafe_allow_html = True)      
 if __name__=='__main__': 
     main()
