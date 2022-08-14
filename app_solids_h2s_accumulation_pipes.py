@@ -94,21 +94,16 @@ def main():
     0.00000000e+00, 6.63697100e-02, 4.45434000e-04, 1.07529531e+03,
     7.29700590e-02, 1.39022858e+01, 1.00000000e+00,
     ]])
-    '''
-    [diameter, slope, q_flow, type_reduction, SO, 
-     link_residents, aspect_ratio, density, betweenneess, closennes, current_flow, second_order, kats, harmonic, node_degree, temp, cod]
+    
+#     [diameter, slope, q_flow, type_reduction, SO, 
+#      link_residents, aspect_ratio, density, betweenneess, closennes, current_flow, second_order, kats, harmonic, node_degree, temp, cod]
      
-     'Closeness centrality', 'Betweenness centrality', 'Current flow closeness centrality',
-'Second order centrality', 'Katz centrality', 'Harmonic centrality',
-'Pipe diameter', 'Node degree', 'Pipe slope', 'Stream order', 'Flow proportion',
- 'Pipe residents', 'Aspect ratio', 'Density', 'COD', 'Temperature']
- 
- x = x[[8,9,10,11,12,13,0,14,1,4,2,5,6,7]]
-    '''   
+#      'Closeness centrality', 'Betweenness centrality', 'Current flow closeness centrality',
+# 'Second order centrality', 'Katz centrality', 'Harmonic centrality',
+# 'Pipe diameter', 'Node degree', 'Pipe slope', 'Stream order', 'Flow proportion',
+#  'Pipe residents', 'Aspect ratio', 'Density', 'COD', 'Temperature']
+      
     x[0][2] = st.slider("Proportion of reduction in wastewater flow (due to DWES scenario) [-]:", min_value=0.1000, max_value=1.0000, value=(0.7000), step=0.1)
-#     x[0][15] = st.slider("Temperature [-]:", min_value=10, max_value=30, value=(20), step=1)
-#     x[0][16] = st.slider("COD [-]:", min_value=1.0, max_value=4.0, value=(1.0), step=0.1)
-
     threshold = st.number_input("Threshold value of the maximum shear stress below the pipe will accumulate solids (2 Pa typical value) [Pa]:",min_value=0.0, max_value=100.0, value=(2.0), step=0.05) 
      
     st.write('Case:')
@@ -134,8 +129,7 @@ def main():
     x[0][14] = st.slider("Node degree of the pipe [-]:", min_value=1, max_value=5, value=(1))
     x[0][6] = st.slider("Aspect ratio of the network [-]:", min_value=0.133, max_value=7.5, value=(0.83))
     x[0][7] = st.slider("Density of the network? [person/km\u00b2]", min_value=4505, max_value=32060, value=(26210))/1000
-#     StandardScaler().fit([[1], [1.5], [2], [3],[ 4]]).transform([[5]])[0][0]
-#     StandardScaler().fit([[10], [20], [30]]).transform([[10]])[0][0]
+
     
     result =""
     # when 'Predict' is clicked, make the prediction and store it 
@@ -156,14 +150,13 @@ def main():
                     [StandardScaler().fit([[10], [20], [30]]).transform([[temperature]])[0][0]],
                     [StandardScaler().fit([[1], [1.5], [2], [3],[ 4]]).transform([[cod]])[0][0]],
                   ])
-    x
     loaded_rf = joblib.load("rrf_h2s.joblib")
-    if st.button("Predict H2S"):
-        loaded_rf.predict(x.reshape(1,-1))
-        if loaded_rf.predict(x.reshape(1,-1)) > 2:
-            st.success('Your pipe H2S acc')
-        else:
-            st.success('Your pipe do not H2S acc')
+#     if st.button("Predict H2S"):
+    loaded_rf.predict(x.reshape(1,-1))
+    if loaded_rf.predict(x.reshape(1,-1)) > 2:
+        st.success('Your pipe H2S acc')
+    else:
+        st.success('Your pipe do not H2S acc')
 
 
 
