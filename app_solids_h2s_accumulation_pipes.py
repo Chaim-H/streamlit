@@ -131,7 +131,7 @@ def main():
     result =""
     # when 'Predict' is clicked, make the prediction and store it 
     if st.button("Predict"):
-        result = prediction(x[:-2], threshold, regressor, pca, train_location, point_round)
+        result = prediction(x, threshold, regressor, pca, train_location, point_round)
         if result[1] != "":
             st.success('{}'.format(result[1]))
         st.success('Your pipe {}'.format(result[0]))
