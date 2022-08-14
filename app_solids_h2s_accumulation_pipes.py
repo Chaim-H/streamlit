@@ -139,9 +139,11 @@ def main():
         st.success('Your pipe {}'.format(result[0]))
     
     x = np.append(scaler.transform(x), [[20.0], [1.0]])
+    x
+    temperature = st.slider("Temperature [-]:", min_value=10, max_value=30, value=(20), step=1)
     x[0][15] = st.slider("Temperature [-]:", min_value=10, max_value=30, value=(20), step=1)
     x[0][16] = st.slider("COD [-]:", min_value=1.0, max_value=4.0, value=(2.0), step=1)
-    x 
+     
     loaded_rf = joblib.load("rrf_h2s.joblib")
 
 
