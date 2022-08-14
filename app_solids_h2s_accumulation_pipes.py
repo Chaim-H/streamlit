@@ -104,7 +104,7 @@ def main():
 #  'Pipe residents', 'Aspect ratio', 'Density', 'COD', 'Temperature']
       
 
-    st.write('Case:')
+    st.header('Case:')
     case = st.radio("Classification according to the availability and collection effort of the features",('Difficult (all features)', 'Medium (a range of slope is needed and the number of residents is not required)'))
     st.write('Pipe and network parameters:')
     if case == 'Difficult (all features)':
