@@ -60,9 +60,9 @@ def prediction(x, threshold, regressor, pca, train_location, point_round):
     
     # calculate the prediction:
     if regressor.predict(x)[0] < threshold:
-        pred = f'accumulate' # {probably}' , {regressor.predict(x)[0]:.2f}'
+        pred = f'accumulate solids' # {probably}' , {regressor.predict(x)[0]:.2f}'
     else: 
-        pred = f'doesn\'t accumulate' # {probably}' #, {regressor.predict(x)[0]:.2f}'
+        pred = f'doesn\'t accumulate solids' # {probably}' #, {regressor.predict(x)[0]:.2f}'
         
     # return
     return pred, warning, in_train
@@ -137,8 +137,10 @@ def main():
         "Threshold value of the maximum shear stress below the pipe will accumulate solids (2 Pa typical value) [Pa]:", 
         min_value=1.5, max_value=2.5, value=(2.0), step=0.1)
     threshold_h2s = st.slider(
-        "Threshold value of the maximum sulphid than an hour in day:", 
+        "Threshold value for more than an hour a day: [mgS\l]", 
         min_value=0.25, max_value=2.5, value=(2.0), step=0.25)
+    st.write('ML predictions:')
+    st.markdown('Streamlit is **_really_ cool**.')
 
     result =""
     # when 'Predict' is clicked, make the prediction and store it 
@@ -148,7 +150,6 @@ def main():
         st.success('{}'.format(result[1]))
     st.success('Your pipe {}'.format(result[0]))
     
-
 
     x = scaler.transform(x)
     x = x.reshape(-1,1).reshape(-1,1)[[8,9,10,11,12,13,0,14,1,4,2,5,6,7]]
@@ -161,15 +162,15 @@ def main():
 #     if st.button("Predict H2S"):
     loaded_rf.predict(x.reshape(1,-1))
     if loaded_rf.predict(x.reshape(1,-1)) > threshold_h2s:
-        st.success('Your pipe H2S acc')
+        st.success('Your pipe accumulate sulphids')
     else:
-        st.success('Your pipe do not H2S acc')
+        st.success('Your pipe doesn\'t accumulate sulphids')
 
-    html_temp = """ 
-    <div style ="background-color:azure;"> 
-    <h1 style ="color:black;text-align:left;font-size:18px;">Harpaz C., Russo S., Leitão J.P., Penn  R., 2022. Potential of supervised machine learning algorithms for estimating the impact of water efficient scenarios on solids accumulation in sewers. Water Research, 216</h1> 
-    </div> 
-    """
+#     html_temp = """ 
+#     <div style ="background-color:azure;"> 
+#     <h1 style ="color:black;text-align:left;font-size:18px;">Harpaz C., Russo S., Leitão J.P., Penn  R., 2022. Potential of supervised machine learning algorithms for estimating the impact of water efficient scenarios on solids accumulation in sewers. Water Research, 216</h1> 
+#     </div> 
+#     """
     # display the front end aspect
     st.markdown(html_temp, unsafe_allow_html = True)      
 if __name__=='__main__': 
