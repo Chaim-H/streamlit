@@ -90,11 +90,17 @@ def main():
     1.88200000e-01, 4.41795230e-02, 7.00000000e-01, 1.00000000e+00,
     1.00000000e+00, 1.06000000e+02, 8.33333333e-01, 2.62135673e+01,
     0.00000000e+00, 6.63697100e-02, 4.45434000e-04, 1.07529531e+03,
-    7.29700590e-02, 1.39022858e+01, 1.00000000e+00
+    7.29700590e-02, 1.39022858e+01, 1.00000000e+00, 30, 1,
     ]])
+    [diameter, slope, q_flow, type_reduction, SO, 
+     link_residents, aspect_ratio, density, betweenneess, closennes, current_flow, second_order, kats, harmonic, node_degree, temp, cod
        
     x[0][2] = st.slider("Proportion of reduction in wastewater flow (due to DWES scenario) [-]:", min_value=0.1000, max_value=1.0000, value=(0.7000), step=0.1)
+    x[0][15] = st.slider("Temperature [-]:", min_value=10, max_value=30, value=(20), step=1)
+    x[0][16] = st.slider("COD [-]:", min_value=1, max_value=4, value=(1), step=0.1)
+
     threshold = st.number_input("Threshold value of the maximum shear stress below the pipe will accumulate solids (2 Pa typical value) [Pa]:",min_value=0.0, max_value=100.0, value=(2.0), step=0.05) 
+     
     st.write('Case:')
     case = st.radio("Classification according to the availability and collection effort of the features",('Difficult (all features)', 'Medium (a range of slope is needed and the number of residents is not required)'))
     st.write('Pipe and network parameters:')
@@ -108,8 +114,6 @@ def main():
         x[0][4] = st.slider("Stream order of the pipe [-]:", min_value=1, max_value=75, value=(1))
         x[0][5] = 10 + 550 * x[0][4]
     x[0][3] = 1 # st.slider("What is Type reduction                ?", min_value=0.0000, max_value=1.0000, value=(1.0000))
-    def get_num(a):
-        return a
     x[0][0]  = 0.5#get_num(st.select_slider('Diameter of the pipe [m]:', options=[0.1882, 0.2354, 0.2966, 0.3766, 0.4708, 0.5932]))
     x[0][8] = st.slider("Betweenness centrality of the pipe [-]:", min_value=0.0000, max_value=0.7041, value=(0.0000))
     x[0][9] = st.slider("Closeness centrality of the pipe [-]:", min_value=0.0209, max_value=0.1944, value=(0.0664))
@@ -120,6 +124,8 @@ def main():
     x[0][14] = st.slider("Node degree of the pipe [-]:", min_value=1, max_value=5, value=(1))
     x[0][6] = st.slider("Aspect ratio of the network [-]:", min_value=0.133, max_value=7.5, value=(0.83))
     x[0][7] = st.slider("Density of the network? [person/km\u00b2]", min_value=4505, max_value=32060, value=(26210))/1000
+    StandardScaler().fit([[1], [1.5], [2], [3],[ 4]]).transform([[5]])[0][0]
+    StandardScaler().fit([[10], [20], [30]]).transform([[10]])[0][0]
     
     result =""
     # when 'Predict' is clicked, make the prediction and store it 
