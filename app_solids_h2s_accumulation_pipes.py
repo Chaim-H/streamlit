@@ -57,7 +57,7 @@ def prediction(x, threshold, regressor, pca, train_location, point_round):
     probably = f'(probably: {100*(prob):.0f}%)'
     
     # calculate the prediction:
-    if regressor.predict(x)[0][:-2] < threshold:
+    if regressor.predict(x)[0] < threshold:
         pred = f'accumulate' # {probably}' , {regressor.predict(x)[0]:.2f}'
     else: 
         pred = f'doesn\'t accumulate' # {probably}' #, {regressor.predict(x)[0]:.2f}'
@@ -131,7 +131,7 @@ def main():
     result =""
     # when 'Predict' is clicked, make the prediction and store it 
     if st.button("Predict"):
-        result = prediction(x, threshold, regressor, pca, train_location, point_round)
+        result = prediction(x[:-2], threshold, regressor, pca, train_location, point_round)
         if result[1] != "":
             st.success('{}'.format(result[1]))
         st.success('Your pipe {}'.format(result[0]))
