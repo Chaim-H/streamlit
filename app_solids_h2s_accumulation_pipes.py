@@ -139,7 +139,7 @@ def main():
     
     result =""
     # when 'Predict' is clicked, make the prediction and store it 
-    if st.button("Predict"):
+    if st.button("Predict solids"):
         result = prediction(x, threshold, regressor, pca, train_location, point_round)
         if result[1] != "":
             st.success('{}'.format(result[1]))
@@ -157,9 +157,15 @@ def main():
                     [StandardScaler().fit([[1], [1.5], [2], [3],[ 4]]).transform([[cod]])[0][0]],
                   ])
     x
-
     loaded_rf = joblib.load("rrf_h2s.joblib")
-    loaded_rf.predict(x.reshape(1,-1))
+    if st.button("Predict H2S"):
+        loaded_rf.predict(x.reshape(1,-1))
+        if loaded_rf.predict(x.reshape(1,-1)) > 2:
+            st.success('Your pipe H2S acc')
+        else:
+            st.success('Your pipe do not H2S acc')
+
+
 
 
     html_temp = """ 
