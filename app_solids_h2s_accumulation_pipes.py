@@ -72,7 +72,7 @@ def main():
     # front end elements of the web page 
     html_temp = """ 
     <div style ="background-color:bisque;"> 
-    <h1 style ="color:black;text-align:center;font-size:23px;">Tool for predicting solids and sulphids accumulation in sewer pipes</h1> 
+    <h1 style ="color:black;text-align:center;font-size:23px;">Tool for predicting solids and sulphides accumulation in sewer pipes</h1> 
     </div> 
     """
     # display the front end aspect
@@ -130,14 +130,14 @@ def main():
     st.subheader('Simulation parameters:')
     x[0][2] = st.slider("Proportion of reduction in wastewater flow (due to DWES scenario) [-]:", min_value=0.1000, max_value=1.0000, value=(0.7000), step=0.1)
     temperature = st.slider("Temperature [C"+u"\u00b0" +"]:", min_value=10, max_value=30, value=(20), step=1)     #Temperature = "Temperature [C"+u"\u00b0" +"]"
-    cod = st.slider("Increase in COD [-]:", min_value=1.0, max_value=4.0, value=(1.0), step=0.1)
+    cod = st.slider("Increase in COD (due to DWES scenario) [-]:", min_value=1.0, max_value=4.0, value=(1.0), step=0.1)
     st.subheader('Thresholds:')
 
     threshold = st.slider(
         "Threshold value of the maximum shear stress below the pipe will accumulate solids (2 Pa typical value) [Pa]:", 
         min_value=1.5, max_value=2.5, value=(2.0), step=0.1)
     threshold_h2s = st.slider(
-        "Threshold value for more than an hour a day: [mgS\l]", 
+        "Threshold value of sulphides that if it is present for more than an hour a day the pipe is classified as accumulating sulphides (typical values are 0.5 mgS/l for moderate and 2 mgS/l for higher probability of hazards) [mgS\l]:", 
         min_value=0.25, max_value=2.5, value=(2.0), step=0.25)
     st.subheader('ML predictions:')
 
@@ -161,9 +161,9 @@ def main():
 #     if st.button("Predict H2S"):
     loaded_rf.predict(x.reshape(1,-1))
     if loaded_rf.predict(x.reshape(1,-1)) > threshold_h2s:
-        st.success('Your pipe accumulate sulphids')
+        st.success('Your pipe accumulate sulphides')
     else:
-        st.success('Your pipe doesn\'t accumulate sulphids')
+        st.success('Your pipe doesn\'t accumulate sulphides')
 
 #     html_temp = """ 
 #     <div style ="background-color:azure;"> 
