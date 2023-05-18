@@ -1,4 +1,4 @@
-sklearn
+sklearn==0.23.2
 streamlit
 scipy
 numpy
